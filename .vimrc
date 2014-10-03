@@ -1,6 +1,6 @@
-" Use the Solarized Dark theme
+" Use the Molokai Dark theme
 set background=dark
-colorscheme solarized
+colorscheme molokai
 
 " Make Vim more useful
 set nocompatible
@@ -45,8 +45,8 @@ set number
 syntax on
 " Highlight current line
 set cursorline
-" Make tabs as wide as two spaces
-set tabstop=2
+" Make tabs as wide as four spaces
+set tabstop=4
 " Show “invisible” characters
 set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
 set list
@@ -82,6 +82,12 @@ endif
 " Start scrolling three lines before the horizontal window border
 set scrolloff=3
 
+" Spaces are better than a tab character
+set expandtab
+set smarttab
+set shiftwidth=4 " spaces for each step of (auto)indent
+set softtabstop=4 " set virtual tab stop (compat for 8-wide tabs)
+
 " Strip trailing whitespace (,ss)
 function! StripWhitespace()
 	let save_cursor = getpos(".")
@@ -93,6 +99,37 @@ endfunction
 noremap <leader>ss :call StripWhitespace()<CR>
 " Save a file as root (,W)
 noremap <leader>W :w !sudo tee % > /dev/null<CR>
+
+" Create Blank Newlines and stay in Normal mode
+nnoremap <silent> zj o<Esc>
+nnoremap <silent> zk O<Esc>
+
+" Up and down are more logical with g..
+nnoremap <silent> k gk
+nnoremap <silent> j gj
+inoremap <silent> <Up> <Esc>gka
+inoremap <silent> <Down> <Esc>gja
+
+" Remove highlights
+nnoremap <leader><space> :noh<cr>
+
+" Force me to learn hjkl to move instead of arrow keys
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+
+" Control hjkl to move through windows
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+set pastetoggle=<F6>
 
 " Automatic commands
 if has("autocmd")

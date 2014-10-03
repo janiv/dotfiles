@@ -2,6 +2,8 @@
 
 # ~/.osx — https://mths.be/osx
 
+DO NOT RUN THIS!!! Instead just run the commands you want
+
 # Ask for the administrator password upfront
 sudo -v
 
